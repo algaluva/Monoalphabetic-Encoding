@@ -53,7 +53,7 @@ def selectMode():
     #this is really awkward, must change so that selectionOptions can be created automatically instead of by hand (as that is awkward and prone to human error)
     slectionOptions = ['0', '1', '2', '3']
     print("Please select what you wish to do by entering one of the following numbers")
-    print("0: Quite programm")
+    print("0: Quit programm")
     print("1: encode monoalphabetically")
     print("2: decode monoalphabetically")
     print("3: enter new key alphabet")

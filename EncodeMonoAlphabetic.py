@@ -8,18 +8,21 @@ keyAlphabet = ''
 
 #check that every letter is unambiuously reasigned
 #if not let user input a new key and check again
-def checkUnambiguous(key):
-    isUnambiguous = False
+def checkUnambiguous():
     print('Please enter key alphabet')
-    while isUnambiguous == False:
+    while True:
+        isUnambiguous = True
         key = input().upper()
+        if len(key) != len(latinAlphabet):
+            isUnambiguous = False
         for letter in latinAlphabet:
-            if letter not in key.upper() or len(key) != len(latinAlphabet):
-                print("Alphabet not unambiguously encoded, please enter new encoding Alphabet")
-                break
-            if "Z" in key.upper():
-                isUnambiguous = True
-    return key
+            if letter not in key:
+                isUnambiguous = False
+
+        if isUnambiguous == False:
+            print("Alphabet not unambiguously encoded, please enter new encoding Alphabet")
+        else:
+            return key
 
 #encode an inputed message using the key
 def encodeMonoAlphabetic(message, key):
@@ -73,7 +76,7 @@ def selectMode():
         originalMsg = input()
         print(encodeMonoAlphabetic(originalMsg, keyAlphabet))
         return False
-    
+
     #if 2 do decodeMonoAlphabetic
     if selection == '2':
         print('Please enter Text to decode')
@@ -82,10 +85,10 @@ def selectMode():
         return False
 
     if selection == '3':
-        keyAlphabet = checkUnambiguous(keyAlphabet)
+        keyAlphabet = checkUnambiguous()
         return False
 
 
-keyAlphabet = checkUnambiguous(keyAlphabet)
+keyAlphabet = checkUnambiguous()
 while isDone == False:
     isDone = selectMode()

@@ -2,7 +2,7 @@
 #basic uppercase latin alphabet for later referrence
 latinAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-isDone = False
+isInProgress = True
 
 keyAlphabet = ''
 
@@ -54,7 +54,6 @@ def decodeMonoAlphabetic(message):
 def selectMode():
     global keyAlphabet
     #this is really awkward, must change so that selectionOptions can be created automatically instead of by hand (as that is awkward and prone to human error)
-    slectionOptions = ['0', '1', '2', '3']
     print("Please select what you wish to do by entering one of the following numbers")
     print("0: Quit programm")
     print("1: encode monoalphabetically")
@@ -62,33 +61,32 @@ def selectMode():
     print("3: enter new key alphabet")
     selection = input()
 
-    #check that the selection is a possible option
-    if selection not in slectionOptions:
-        print("Please make a valid selection")
+    if selection == '0':
         return False
 
-    if selection == '0':
-        return True
-
     #if 1 do encodeMonoAlphabetic
-    if selection == '1':
+    elif selection == '1':
         print('Please enter Text to encode')
         originalMsg = input()
         print(encodeMonoAlphabetic(originalMsg, keyAlphabet))
-        return False
+        return True
 
     #if 2 do decodeMonoAlphabetic
-    if selection == '2':
+    elif selection == '2':
         print('Please enter Text to decode')
         recievedMsg = input()
         print(decodeMonoAlphabetic(recievedMsg))
-        return False
+        return True
 
-    if selection == '3':
+    elif selection == '3':
         keyAlphabet = checkUnambiguous()
-        return False
+        return True
+    
+    else:
+        print("Please make a valid selection")
+        return True
 
 
 keyAlphabet = checkUnambiguous()
-while isDone == False:
-    isDone = selectMode()
+while isInProgress == True:
+    isInProgress = selectMode()

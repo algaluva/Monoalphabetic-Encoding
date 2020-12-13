@@ -53,37 +53,33 @@ def decodeMonoAlphabetic(message):
 #Select wheter you wish to quit, encode, decode,...
 def selectMode():
     global keyAlphabet
-    #this is really awkward, must change so that selectionOptions can be created automatically instead of by hand (as that is awkward and prone to human error)
-    print("Please select what you wish to do by entering one of the following numbers")
-    print("0: Quit programm")
-    print("1: encode monoalphabetically")
-    print("2: decode monoalphabetically")
-    print("3: enter new key alphabet")
-    selection = input()
+
+    selection = input('\nPlease select what you wish to do by entering one of the following numbers\n0: Quit programm\n1: encode monoalphabetically\n2: decode monoalphabetically\n3: enter new key alphabet\n')
 
     if selection == '0':
         return False
 
     #if 1 do encodeMonoAlphabetic
     elif selection == '1':
-        print('Please enter Text to encode')
+        print('\nPlease enter Text to encode')
         originalMsg = input()
-        print(encodeMonoAlphabetic(originalMsg, keyAlphabet))
+        print('\n',encodeMonoAlphabetic(originalMsg, keyAlphabet),)
         return True
 
     #if 2 do decodeMonoAlphabetic
     elif selection == '2':
-        print('Please enter Text to decode')
+        print('\nPlease enter Text to decode')
         recievedMsg = input()
-        print(decodeMonoAlphabetic(recievedMsg))
+        print('\n',decodeMonoAlphabetic(recievedMsg))
         return True
 
     elif selection == '3':
+        print('\n')
         keyAlphabet = checkUnambiguous()
         return True
     
     else:
-        print("Please make a valid selection")
+        print("\nPlease make a valid selection")
         return True
 
 
